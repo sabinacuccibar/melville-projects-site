@@ -3,41 +3,39 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+  const notes = await getCollection("notes");
 
-  return projects.map((project) => ({
-    params: { slug: project.id },
-    props: { project },
-  }));
+  return notes.map((note) => {
+    const slug = note.id.replace(/\.md$/, "");
+
+    return {
+      params: { slug },
+      props: { note },
+    };
+  });
 }
 
-const { project } = Astro.props;
-const { Content } = await render(project);
+const { note } = Astro.props;
+const { Content } = await render(note);
 ---
 
-<BaseLayout title={`${project.data.title} | Melville Projects`}>
-  <article class="project-page">
-    <header class="project-header">
-      {project.data.year && <p class="eyebrow">{project.data.year}</p>}
-      <h1>{project.data.title}</h1>
-      {project.data.subtitle && <p class="project-subtitle">{project.data.subtitle}</p>}
+<BaseLayout title={`${note.data.title} | Melville Projects`}>
+  <article class="note-page">
+    <header class="note-header">
+      <p class="eyebrow">Note</p>
+      <h1>{note.data.title}</h1>
+
+      <p class="meta">
+        {note.data.date.toLocaleDateString("en-GB", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </p>
     </header>
 
-    {project.data.image && (
-      <figure class="project-image">
-        <img src={project.data.image} alt="" />
-      </figure>
-    )}
-
-    <div class="project-body">
+    <div class="note-body">
       <Content />
     </div>
-
-    {project.data.partners && (
-      <aside class="project-partners">
-        <p class="project-partners-label">Partners / commissioners</p>
-        <p>{project.data.partners}</p>
-      </aside>
-    )}
   </article>
 </BaseLayout>

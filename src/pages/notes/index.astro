@@ -2,29 +2,35 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-const projects = await getCollection("projects");
+const notes = await getCollection("notes");
 
-projects.sort((a, b) => Number(b.data.year ?? 0) - Number(a.data.year ?? 0));
+notes.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const getSlug = (id: string) => id.replace(/\.md$/, "");
 ---
 
-<BaseLayout title="Projects | Melville Projects">
+<BaseLayout title="Notes | Melville Projects">
   <section class="page">
-    <p class="eyebrow">Projects</p>
-    <h1>Project sheets</h1>
+    <p class="eyebrow">Notes</p>
+    <h1>Short notes</h1>
     <p>
-      A loose archive of selected projects, collaborations, proposals, and strategic work.
+      Short texts, observations, working notes, and reflections.
     </p>
 
     <div class="list">
-      {projects.map((project) => (
+      {notes.map((note) => (
         <article class="list-item">
           <div class="meta">
-            {project.data.year}
+            {note.data.date.toLocaleDateString("en-GB", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
           </div>
-          <h2>{project.data.title}</h2>
-          {project.data.subtitle && <p>{project.data.subtitle}</p>}
+          <h2>{note.data.title}</h2>
+          {note.data.excerpt && <p>{note.data.excerpt}</p>}
           <p>
-            <a href={`/projects/${project.id}`}>Read project</a>
+            <a href={`/notes/${getSlug(note.id)}`}>Read note</a>
           </p>
         </article>
       ))}

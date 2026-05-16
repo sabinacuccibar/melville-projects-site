@@ -216,3 +216,23 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
+.note-page {
+  max-width: var(--text-max);
+}
+
+.note-header {
+  margin-bottom: 2.5rem;
+}
+
+.note-body {
+  font-size: 1.05rem;
+}
+
+.note-body p {
+  margin: 0 0 1.25rem;
+}
+
+.note-body h2,
+.note-body h3 {
+  margin-top: 2rem;
+}
