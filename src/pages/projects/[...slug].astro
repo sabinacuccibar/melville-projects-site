@@ -5,10 +5,14 @@ import { getCollection, render } from "astro:content";
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
 
-  return projects.map((project) => ({
-    params: { slug: project.slug },
-    props: { project },
-  }));
+  return projects.map((project) => {
+    const slug = project.id.replace(/\.md$/, "");
+
+    return {
+      params: { slug },
+      props: { project },
+    };
+  });
 }
 
 const { project } = Astro.props;
@@ -16,18 +20,28 @@ const { Content } = await render(project);
 ---
 
 <BaseLayout title={`${project.data.title} | Melville Projects`}>
-  <article class="page">
-    <p class="eyebrow">Project sheet</p>
-    <h1>{project.data.title}</h1>
+  <article class="project-page">
+    <header class="project-header">
+      {project.data.year && <p class="eyebrow">{project.data.year}</p>}
+      <h1>{project.data.title}</h1>
+      {project.data.subtitle && <p class="project-subtitle">{project.data.subtitle}</p>}
+    </header>
 
-    <p class="meta">
-      {project.data.year}
-      {project.data.field && <> · {project.data.field}</>}
-    </p>
+    {project.data.image && (
+      <figure class="project-image">
+        <img src={project.data.image} alt="" />
+      </figure>
+    )}
 
-    {project.data.organisation && <p><strong>Organisation:</strong> {project.data.organisation}</p>}
-    {project.data.role && <p><strong>Role:</strong> {project.data.role}</p>}
+    <div class="project-body">
+      <Content />
+    </div>
 
-    <Content />
+    {project.data.partners && (
+      <aside class="project-partners">
+        <p class="project-partners-label">Partners / commissioners</p>
+        <p>{project.data.partners}</p>
+      </aside>
+    )}
   </article>
 </BaseLayout>

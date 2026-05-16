@@ -5,11 +5,10 @@ const projects = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
   schema: z.object({
     title: z.string(),
-    year: z.string(),
-    organisation: z.string().optional(),
-    role: z.string().optional(),
-    field: z.string().optional(),
-    tags: z.array(z.string()).optional(),
+    subtitle: z.string().optional(),
+    year: z.string().optional(),
+    partners: z.string().optional(),
+    image: z.string().optional(),
   }),
 });
 
@@ -18,7 +17,6 @@ const notes = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.date(),
-    tags: z.array(z.string()).optional(),
     excerpt: z.string().optional(),
   }),
 });

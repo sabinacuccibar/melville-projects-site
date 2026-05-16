@@ -1,20 +1,12 @@
 ---
-title: "Sample project sheet"
+title: "Sample project"
+subtitle: "A short project subtitle that explains what this was about."
 year: "2026"
-organisation: "Organisation name"
-role: "Project strategy / coordination / writing"
-field: "EU funding / public innovation"
-tags:
-  - EU funding
-  - public innovation
+partners: "Partner / client / commissioner"
 ---
 
-This is a sample project sheet. It will later become a short, text-based description of a project, collaboration, proposal, or piece of strategic work.
+This is a short, fluid project description.
 
-## My contribution
+It can be written as a narrative text rather than as a rigid case study. The page can describe what the project explored, what kind of work it involved, and why it belongs in this archive.
 
-Describe the role, the type of work, and the main contribution.
-
-## Relevance
-
-Describe why the project mattered, what it tested, or what kind of knowledge it produced.
+The format should remain light: title, subtitle, body text, and partners or commissioners at the end.

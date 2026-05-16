@@ -4,7 +4,9 @@ import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
 
-projects.sort((a, b) => Number(b.data.year) - Number(a.data.year));
+projects.sort((a, b) => Number(b.data.year ?? 0) - Number(a.data.year ?? 0));
+
+const getSlug = (id: string) => id.replace(/\.md$/, "");
 ---
 
 <BaseLayout title="Projects | Melville Projects">
@@ -26,7 +28,7 @@ projects.sort((a, b) => Number(b.data.year) - Number(a.data.year));
           {project.data.organisation && <p><strong>Organisation:</strong> {project.data.organisation}</p>}
           {project.data.role && <p><strong>Role:</strong> {project.data.role}</p>}
           <p>
-            <a href={`/projects/${project.slug}`}>Read project sheet</a>
+            <a href={`/projects/${getSlug(project.id)}`}>Read project</a>
           </p>
         </article>
       ))}

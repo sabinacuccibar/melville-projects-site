@@ -1,8 +1,8 @@
 :root {
-  --bg: #f7f4ee;
-  --text: #151515;
-  --muted: #68635d;
-  --line: #d8d0c6;
+  --bg: #ffe9e9ff;
+  --text: #0101ad;
+  --muted: #0101ad;
+  --line: #0101ad;
   --max: 1080px;
   --text-max: 720px;
 }
@@ -28,6 +28,7 @@ a {
 .site-shell {
   width: min(100% - 2rem, var(--max));
   margin: 0 auto;
+
 }
 
 .site-header {
@@ -35,7 +36,18 @@ a {
   justify-content: space-between;
   gap: 1rem;
   padding: 1.25rem 0;
-  border-bottom: 1px solid var(--line);
+  border-bottom: none;
+  position: relative;
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: calc((100vw - 100%) / -2);
+  right: calc((100vw - 100%) / -2);
+  bottom: 0;
+  height: 1px;
+  background: var(--line);
 }
 
 .site-title {
@@ -124,9 +136,20 @@ h1 {
 
 .site-footer {
   padding: 2rem 0;
-  border-top: 1px solid var(--line);
+  border-top: none;
   color: var(--muted);
   font-size: 0.9rem;
+  position: relative;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  left: calc((100vw - 100%) / -2);
+  right: calc((100vw - 100%) / -2);
+  top: 0;
+  height: 1px;
+  background: var(--line);
 }
 
 @media (max-width: 640px) {
@@ -141,4 +164,55 @@ h1 {
   main {
     padding: 2.5rem 0;
   }
+}
+.project-page {
+  max-width: var(--text-max);
+}
+
+.project-header {
+  margin-bottom: 2.5rem;
+}
+
+.project-subtitle {
+  margin-top: 1.25rem;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  color: var(--muted);
+}
+
+.project-body {
+  font-size: 1.05rem;
+}
+
+.project-body p {
+  margin: 0 0 1.25rem;
+}
+
+.project-body h2,
+.project-body h3 {
+  margin-top: 2rem;
+}
+
+.project-image {
+  margin: 2rem 0;
+}
+
+.project-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.project-partners {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.project-partners-label {
+  margin: 0 0 0.25rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
