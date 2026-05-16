@@ -1,17 +1,13 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <section class="hero">
+    <p class="eyebrow">Melville Projects</p>
+    <h1>Project work, research notes, and strategic collaborations.</h1>
+    <p class="lede">
+      A small independent space for project sheets, short notes, and work at the intersection of public innovation, research, culture, and European funding.
+    </p>
+  </section>
+</BaseLayout>
