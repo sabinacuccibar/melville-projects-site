@@ -20,15 +20,18 @@ const getSlug = (id: string) => id.replace(/\.md$/, "");
     <div class="list">
       {projects.map((project) => (
         <article class="list-item">
-          <div class="meta">
-            {project.data.year}
-            {project.data.field && <> · {project.data.field}</>}
-          </div>
+          {project.data.year && (
+            <div class="meta">{project.data.year}</div>
+          )}
+
           <h2>{project.data.title}</h2>
-          {project.data.organisation && <p><strong>Organisation:</strong> {project.data.organisation}</p>}
-          {project.data.role && <p><strong>Role:</strong> {project.data.role}</p>}
-          <p>
-            <a href={`/projects/${getSlug(project.id)}`}>Read project</a>
+
+          {project.data.subtitle && (
+            <p class="project-list-subtitle">{project.data.subtitle}</p>
+          )}
+
+         <p class="project-read-link">
+          <a href={`/projects/${getSlug(project.id)}`}>Read project</a>
           </p>
         </article>
       ))}
