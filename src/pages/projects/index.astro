@@ -1,5 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+
+projects.sort((a, b) => Number(b.data.year) - Number(a.data.year));
 ---
 
 <BaseLayout title="Projects | Melville Projects">
@@ -11,13 +16,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </p>
 
     <div class="list">
-      <article class="list-item">
-        <div class="meta">2026 · EU funding / public innovation</div>
-        <h2>Sample project sheet</h2>
-        <p>
-          Short description of the project, the role, and the type of contribution.
-        </p>
-      </article>
+      {projects.map((project) => (
+        <article class="list-item">
+          <div class="meta">
+            {project.data.year}
+            {project.data.field && <> · {project.data.field}</>}
+          </div>
+          <h2>{project.data.title}</h2>
+          {project.data.organisation && <p><strong>Organisation:</strong> {project.data.organisation}</p>}
+          {project.data.role && <p><strong>Role:</strong> {project.data.role}</p>}
+          <p>
+            <a href={`/projects/${project.slug}`}>Read project sheet</a>
+          </p>
+        </article>
+      ))}
     </div>
   </section>
 </BaseLayout>

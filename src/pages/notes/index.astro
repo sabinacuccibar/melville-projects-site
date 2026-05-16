@@ -1,5 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const notes = await getCollection("notes");
+
+notes.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <BaseLayout title="Notes | Melville Projects">
@@ -11,13 +16,22 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </p>
 
     <div class="list">
-      <article class="list-item">
-        <div class="meta">May 2026 · Note</div>
-        <h2>First note placeholder</h2>
-        <p>
-          A short note will appear here.
-        </p>
-      </article>
+      {notes.map((note) => (
+        <article class="list-item">
+          <div class="meta">
+            {note.data.date.toLocaleDateString("en-GB", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </div>
+          <h2>{note.data.title}</h2>
+          {note.data.excerpt && <p>{note.data.excerpt}</p>}
+          <p>
+            <a href={`/notes/${note.slug}`}>Read note</a>
+          </p>
+        </article>
+      ))}
     </div>
   </section>
 </BaseLayout>
