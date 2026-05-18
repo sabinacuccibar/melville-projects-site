@@ -12,21 +12,23 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
+
   <body>
     <div class="site-shell">
       <header class="site-header">
-        <a class="site-title site-logo-link" href="/" aria-label="Melville Projects home">
+        <a class="site-title site-logo-link" href="/" aria-label="Melville home">
           <img src="/images/melville-logo.svg" alt="" class="site-logo" />
-          <span>Melville </span>
+          <span>Melville</span>
         </a>
 
-        <nav class="site-nav" aria-label="Main navigation">
-          <a href="/about">About</a>
-          <a href="/projects">Projects</a>
-          <a href="/notes">Notes</a>
-          <a href="/contact">Contact</a>
+        <nav class="site-nav site-nav-disabled" aria-label="Main navigation">
+          <span>About</span>
+          <span>Projects</span>
+          <span>Notes</span>
+          <span>Contact</span>
         </nav>
       </header>
 
@@ -35,22 +37,22 @@ const {
       </main>
 
       <footer class="site-footer">
-  <p>© {new Date().getFullYear()} Melville</p>
+        <p>© {new Date().getFullYear()} Melville</p>
 
-  <nav class="footer-links" aria-label="Social links">
-    <a href="https://www.linkedin.com/in/sabinabarcucci/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-      <img src="/icons/linkedin.svg" alt="" class="footer-icon" />
-    </a>
+        <nav class="footer-links" aria-label="Social links">
+          <a href="https://www.linkedin.com/in/sabinabarcucci/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="/icons/linkedin.svg" alt="" class="footer-icon" />
+          </a>
 
-    <a href="https://cyberplace.social/@sabinacuccibar" target="_blank" rel="noopener noreferrer" aria-label="Mastodon">
-      <img src="/icons/mastodon.svg" alt="" class="footer-icon" />
-    </a>
+          <a href="https://cyberplace.social/@sabinacuccibar" target="_blank" rel="noopener noreferrer" aria-label="Mastodon">
+            <img src="/icons/mastodon.svg" alt="" class="footer-icon" />
+          </a>
 
-    <a href="https://github.com/sabinacuccibar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-      <img src="/icons/github.svg" alt="" class="footer-icon" />
-    </a>
-  </nav>
-</footer>
+          <a href="https://github.com/sabinacuccibar" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <img src="/icons/github.svg" alt="" class="footer-icon" />
+          </a>
+        </nav>
+      </footer>
     </div>
   </body>
 </html>
